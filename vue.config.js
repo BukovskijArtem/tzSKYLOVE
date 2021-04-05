@@ -1,8 +1,9 @@
 module.exports = {
     css: {
+        requireModuleExtension: false,
         loaderOptions: {
-            sass: {
-                prependData: ' @import "./assets/style.scss"; '
+            scss: {
+                additionalData: `@import "./assets/style.scss";`
             }
         }
     }

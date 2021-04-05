@@ -28,16 +28,16 @@
         </div>
         <div class="tableTicket__priority">
           <div v-if="item.priority === 0">
-            <p><span class="tableTicket__priority__color-new"></span>Новый</p>
+            <p><span class="tableTicket__priority__color-new"></span> Новый</p>
           </div>
           <div v-if="item.priority === 1">
-            <p><span class="tableTicket__priority__color-processing"></span>В обработке</p>
+            <p><span class="tableTicket__priority__color-processing"></span> В обработке</p>
           </div>
           <div v-if="item.priority === 2">
-            <p><span class="tableTicket__priority__color-postponed"></span>Отложено</p>
+            <p><span class="tableTicket__priority__color-postponed"></span> Отложено</p>
           </div>
           <div v-if="item.priority === 3">
-            <p><span class="tableTicket__priority__color-close"></span>Закрыто</p>
+            <p><span class="tableTicket__priority__color-close"></span> Закрыто</p>
           </div>
         </div>
         <div class="tableTicket__status">
@@ -95,138 +95,6 @@ export default {
 }
 </script>
 
-<style scoped>
-.body {
-  margin: auto;
-  max-width: 1600px;
-  position: relative;
-}
-.body p {
-  font-family: "Lucida Console", Courier, monospace;
-  color:#767a7e9a;
-}
-.header {
-  width: 100%;
-  height: 100px;
-}
-.header button{
-  margin-left: 15px;
-  margin-top: 30px;
-  font-weight: 700;
-  color: white;
-  text-decoration: none;
-  padding: .8em 1em calc(.8em + 3px);
-  border-radius: 3px;
-  background: #78cd51;
-}
-.header button:hover{
-  cursor: pointer;
-}
-.wrapper {
-  background-color: #C0C0C0;
-  padding: 5px;
-}
-.tableTicket {
-  border-radius: 5px;
-  background-color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: nowrap;
-  margin: 15px;
-}
-.tableTicket__num {
-  text-align: center;
-  margin-left: 15px;
-  color: white;
-  padding: 2px 5px 2px 5px;
-  background-color: #FA8072;
-  border-radius: 5px;
-}
-.tableTicket__img {
-  margin-left: 15px;
-  text-align: center;
-}
-.tableTicket__img img{
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    object-position: center;
-    top: 0;
-}
-.tableTicket__name {
-  margin-left: 10px;
-}
-.tableTicket__subject {
-  min-height: 80px;
-  max-height: 80px;
-  overflow-y: auto;
-  scroll-snap-type: y proximity;
-  min-width: 500px;
-  max-width: 500px;
-  background-color: #e6e1e1;
-  border-radius: 5px;
-  padding: 10px 10px 10px 10px;
-  margin: 10px 0px 10px 100px;
-  align-items: center;
-}
-.tableTicket__subject span{
-  color: #02bfd8c9;
-}
-.tableTicket__subject::-webkit-scrollbar{
-  width: 0;
-}
-.tableTicket__priority {
-  margin-left: 50px;
-}
-.tableTicket__priority__color-new:before {
-  content: ' \25CF';
-  font-size: 20px;
-  color:#78cd51;
-}
-.tableTicket__priority__color-processing:before {
-  content: ' \25CF';
-  font-size: 20px;
-  color: #ff6c60;
-}
-.tableTicket__priority__color-postponed:before {
-  content: ' \25CF';
-  font-size: 20px;
-  color: #fcb322;
-}
-.tableTicket__priority__color-close:before {
-  content: ' \25CF';
-  font-size: 20px;
-  color: #bec3c7;
-}
-.tableTicket__status {
-  margin-left: 50px;
-}span
-.tableTicket__status, span{
-  color:#78cd51;
-}
-.tableTicket__date {
-  margin-left: 50px;
-  margin-right: 50px;
-}
-@media (max-width: 1600px) {
-  .body {
-    max-width: 1200px;
-  }
-}
-@media (max-width: 1200px) {
-  .body {
-    max-width: 970px;
-  }
-}
-@media (max-width: 992px) {
-  .body {
-    max-width: 750px;
-  }
-}
-@media (max-width: 767px) {
-  .body {
-    max-width: none;
-  }
-}
+<style lang="scss">
+@import '../assets/slyle.scss';
 </style>
