@@ -1,7 +1,9 @@
 <template>
   <div class="body">
     <div class="header">
-      <button @click="isShowModal = true">Добавить тикет</button>
+      <md-button @click="isShowModal = true" class="md-fab md-primary">
+        <md-icon>add</md-icon>
+      </md-button>
     </div>
     <div class="wrapper" v-if="tableTicket.length > 0">
       <div class="tableTicket" v-for="item in tableTicket" :key="item.ticket_number">
@@ -23,8 +25,8 @@
           <p>{{ item.user.name }}</p>
         </div>
         <div class="tableTicket__subject">
-          <p>Тип обращения: <span>{{ item.subject }}</span></p>
-          <p>{{ item.body_subject }}</p>
+          <p class="tableTicket__subject__text">Тип обращения: <span>{{ item.subject }}</span></p>
+          <p class="tableTicket__subject__text">{{ item.body_subject }}</p>
         </div>
         <div class="tableTicket__priority">
           <div v-if="item.priority === 0">
@@ -57,10 +59,15 @@
         <div class="tableTicket__date">
           <p>{{ item.date }}</p>
         </div>
+        <div>
+          <md-button @click="edit(item)" class="md-fab md-mini md-plain">
+            <md-icon>edit</md-icon>
+          </md-button>
+        </div>
       </div>
     </div>
     <modal v-if="isShowModal">
-      <FormModal :isShowModal="isShowModal" :tableTicket="tableTicket" @hideModal="hideModal"/>
+      <FormModal :tableTicket="tableTicket" @hideModal="hideModal" :editData="editData" :isEdit="isEdit"/>
     </modal>
   </div>
 </template>
@@ -74,27 +81,35 @@ export default {
   },
   data () {
     return {
+      isEdit: false,
+      editData: null,
       isShowModal: false,
       avatar1: require('@/assets/img/1.jpg'),
       avatar2: require('@/assets/img/2.jpg'),
-      avatar3: require('@/assets/img/3.jpg'),
-      // если я получаю данные через get,то tableTicket будет в computed
-      tableTicket: [
-        {ticket_number: 1, subject: 'Оплата', date: '31.03.2021 10:24', body_subject: 'рпасргтргшкрмгшрапсащжшасощшр ааршщ ктолтявщддтщяапрпасргтргшкрмгшрапсащжшасощшр ааршщ ктолтявщддтщяапрпасргтргшкрмгшрапсащжшасощшр ааршщ ктолтявщддтщяапрпасргтргшкрмгшрапсащжшасощшр ааршщ ктолтявщддтщяапрпасргтргшкрмгшрапсащжшасощшр ааршщ ктолтявщддтщяап', status: 0, priority: 0, user: {avatar: 'avatar1', name: 'artem artem', email: ''}},
-        {ticket_number: 2, subject: 'Другое', date: '31.03.2021 10:24', body_subject: 'kfsjfhjfhsf', status: 1, priority: 1, user: {avatar: 'avatar2', name: 'masha', email: ''}},
-        {ticket_number: 3, subject: 'Функционал', date: '31.03.2021 10:24', body_subject: 'kfsjfhjfhsf', status: 2, priority: 2, user: {avatar: 'avatar2', name: 'pasha', email: ''}},
-        {ticket_number: 40, subject: 'Жалоба на пользователя', date: '31.03.2021 10:24', body_subject: 'kfsjfhjfhsf', status: 3, priority: 3, user: {avatar: 'avatar3', name: 'sveta', email: ''}}
-      ]
+      avatar3: require('@/assets/img/3.jpg')
     }
   },
   methods: {
+    edit (item) {
+      this.isEdit = true
+      this.editData = JSON.parse(JSON.stringify(item))
+      this.isShowModal = true
+    },
     hideModal () {
+      this.isEdit = false
       this.isShowModal = false
+    }
+  },
+  computed: {
+    tableTicket () {
+      return this.$store.getters.TABLE_TICKET
     }
   }
 }
 </script>
 
 <style lang="scss">
+@import 'vue-material/dist/vue-material.min.css';
+@import 'vue-material/dist/theme/default.css';
 @import '../assets/slyle.scss';
 </style>

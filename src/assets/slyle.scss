@@ -34,17 +34,9 @@ $color_3: #78cd51;
     height: 100px;
 }
 .header button{
-    margin-left: 15px;
-    margin-top: 30px;
-    font-weight: 700;
-    color: white;
-    text-decoration: none;
+    margin-left: 25px;
+    margin-top: 20px;
     padding: .8em 1em calc(.8em + 3px);
-    border-radius: 3px;
-    background: $color_3;
-    &:hover {
-        cursor: pointer
-    }
 }
 .wrapper {
     background-color: #C0C0C0;
@@ -61,12 +53,13 @@ $color_3: #78cd51;
     align-items: center;
     flex-wrap: nowrap;
     margin: 15px;
+    p {
+        color: black
+    }
 }
 .tableTicket__num {
-    -webkit-box-flex: 30px;
-    -ms-flex: 30px;
-    flex: 30px;
-    max-width: 30px;
+    flex: 35px;
+    max-width: 35px;
     width: 100%;
     text-align: center;
     margin-left: 15px;
@@ -77,8 +70,6 @@ $color_3: #78cd51;
 }
 .tableTicket__img {
     flex: 60px;
-    -webkit-box-flex: 60px;
-    -ms-flex: 60px;
     max-width: 60px;
     width: 100%;
     margin-left: 15px;
@@ -93,24 +84,18 @@ $color_3: #78cd51;
 }
 .tableTicket__name {
     flex: 70px;
-    -webkit-box-flex: 70px;
-    -ms-flex: 70px;
     max-width: 70px;
     width: 100%;
     margin-left: 10px;
 }
 .tableTicket__subject {
     flex: 500px;
-    -webkit-box-flex: 500px;
-    -ms-flex: 500px;
     max-width: 500px;
     width: 100%;
     min-height: 80px;
     max-height: 80px;
     overflow-y: auto;
     scroll-snap-type: y proximity;
-    min-width: 500px;
-    max-width: 500px;
     background-color: #e6e1e1;
     border-radius: 5px;
     padding: 10px 10px 10px 10px;
@@ -122,13 +107,30 @@ $color_3: #78cd51;
     &::-webkit-scrollbar {
         width: 0;
     }
+    @media (max-width: 767px) {
+        flex: 350px;
+        max-width: 350px;
+        width: 100%;
+    }
+    @media (max-width: 575px) {
+        flex: 300px;
+        max-width: 300px;
+        width: 100%;
+    }
+    @media (max-width: 375) {
+        flex: 200px;
+        max-width: 200px;
+        width: 100%;
+    }
+}
+.tableTicket__subject__text {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 .tableTicket__priority {
     white-space: nowrap;
     margin-left: 50px;
     flex: 100px;
-    -webkit-box-flex: 100px;
-    -ms-flex: 100px;
     max-width: 100px;
     width: 100%;
 }
@@ -155,8 +157,6 @@ content: ' \25CF';
 .tableTicket__status {
     white-space:nowrap;
     flex: 100px;
-    -webkit-box-flex: 100px;
-    -ms-flex: 100px;
     max-width: 100px;
     width: 100%;
     margin-left: 50px;
@@ -167,12 +167,9 @@ content: ' \25CF';
 .tableTicket__date {
     white-space:nowrap;
     flex: 150px;
-    -webkit-box-flex: 150px;
-    -ms-flex: 150px;
     max-width: 150px;
     width: 100%;
     margin-left: 50px;
-    margin-right: 50px;
 }
 .modal-mask {
     position: fixed;
@@ -193,7 +190,7 @@ content: ' \25CF';
 }
 .modal-container {
     width: 50%;
-    height: 70%;
+    height: 80%;
     margin: 0px auto;
     padding: 20px 30px;
     background-color: $color_2;
@@ -224,6 +221,10 @@ content: ' \25CF';
     padding: 0;
     margin-bottom: 10px;
 }
+.modal-body__text-form {
+    color: red;
+    margin-top: 3px;
+}
 .modal-body__input input, select, textarea{
     padding: 10px 0px 10px 0px;
     width: 100%;
@@ -235,23 +236,6 @@ content: ' \25CF';
     position:absolute;
     bottom: 30px;
     float: left;
-    button {
-        font-weight: 700;
-        color: $color_2;
-        text-decoration: none;
-        padding: .8em 1em calc(.8em + 3px);
-        border-radius: 3px;
-        &:hover {
-            cursor: pointer;
-        }
-    }
-}
-.modal-button-save {
-    background: $color_3;
-}
-.modal-button-close {
-    margin-left: 15px;
-    background: #f67a6e;
 }
 .modal-enter .modal-container,
 .modal-leave-active .modal-container {

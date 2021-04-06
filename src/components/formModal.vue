@@ -1,6 +1,6 @@
 <template>
   <div class="modal-mask">
-    <div class="modal-wrapper">
+    <div class="modal-wrapper"  @click.self="hideModal">
       <div class="modal-container">
         <div class="modal-header">
           <h2>Новый тикет</h2>
@@ -9,14 +9,23 @@
           <div class="modal-body__input">
             <p class="modal-body__text">Имя:</p>
             <input type="text" v-model="dataForm.user.name" @keypress="onlyNumber"/>
+            <div v-if="dataForm.user.name.length === 0">
+              <p class="modal-body__text-form">Введите имя</p>
+            </div>
           </div>
           <div class="modal-body__input">
             <p class="modal-body__text">Email:</p>
             <input type="text" v-model="dataForm.user.email"/>
+            <div v-if="dataForm.user.email.length === 0">
+              <p class="modal-body__text-form">Введите email</p>
+            </div>
           </div>
           <div class="modal-body__input">
             <p class="modal-body__text">Сообщение:</p>
             <textarea v-model="dataForm.body_subject" />
+            <div v-if="dataForm.body_subject.length === 0">
+              <p class="modal-body__text-form">Введите сообщение</p>
+            </div>
           </div>
           <div class="modal-body__input">
             <p class="modal-body__text">Тип обращения:</p>
@@ -44,15 +53,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button @click="addTicket"
-          class="modal-button-save"
-          :disabled="!this.dataForm.user.name.length || !this.dataForm.user.email.length || !this.dataForm.body_subject.length"
-          :style="!this.dataForm.user.name.length || !this.dataForm.user.email.length || !this.dataForm.body_subject.length ? 'background: #808080;cursor: default' : ''">
-            Сохранить
-          </button>
-          <button class="modal-button-close" @click="hideModal">
-            Отмена
-          </button>
+          <md-button class="md-primary" @click="addTicket" :disabled="!this.dataForm.user.name.length || !this.dataForm.user.email.length || !this.dataForm.body_subject.length">Сохранить</md-button>
+          <md-button class="md-accent" @click="hideModal">Отмена</md-button>
         </div>
       </div>
     </div>
@@ -63,7 +65,8 @@
 export default {
   name: 'formModal',
   props: {
-    isShowModal: null,
+    isEdit: null,
+    editData: null,
     tableTicket: null
   },
   data () {
@@ -118,18 +121,6 @@ export default {
       }
     },
     addTicket () {
-      let avatar = Math.floor(Math.random() * 3)
-      switch (avatar) {
-        case 0:
-          this.dataForm.user.avatar = 'avatar1'
-          break
-        case 1:
-          this.dataForm.user.avatar = 'avatar2'
-          break
-        case 2:
-          this.dataForm.user.avatar = 'avatar3'
-          break
-      }
       switch (this.priority) {
         case 'Низкий':
           this.dataForm.priority = 0
@@ -160,22 +151,47 @@ export default {
       }
       let date = new Date()
       this.dataForm.date = date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + ' ' + date.getHours() + ':' + date.getMinutes()
-      if (this.tableTicket.length > 0) {
-        let numArr = []
+      if (this.isEdit) {
         for (let el of this.tableTicket) {
-          numArr.push(el.ticket_number)
+          if (el.ticket_number === this.dataForm.ticket_number) {
+            el.user = this.dataForm.user
+            el.body_subject = this.dataForm.body_subject
+            el.status = this.dataForm.status
+            el.priority = this.dataForm.priority
+            el.date = this.dataForm.date
+          }
         }
-        this.dataForm.ticket_number = Math.max(...numArr) + 1
+      } else {
+        if (this.tableTicket.length > 0) {
+          let numArr = []
+          for (let el of this.tableTicket) {
+            numArr.push(el.ticket_number)
+          }
+          this.dataForm.ticket_number = Math.max(...numArr) + 1
+        }
+        let avatar = Math.floor(Math.random() * 3)
+        switch (avatar) {
+          case 0:
+            this.dataForm.user.avatar = 'avatar1'
+            break
+          case 1:
+            this.dataForm.user.avatar = 'avatar2'
+            break
+          case 2:
+            this.dataForm.user.avatar = 'avatar3'
+            break
+        }
+        this.tableTicket.push(this.dataForm)
       }
       console.log(JSON.stringify(this.dataForm))
       // данные в JSON,делаем post запрос и сразу get для обновления tableTicket
-      this.tableTicket.push(this.dataForm)
       this.$emit('hideModal')
+    }
+  },
+  mounted () {
+    if (this.isEdit) {
+      this.dataForm = this.editData
     }
   }
 }
 </script>
-
-<style lang="scss">
-@import '../assets/slyle.scss';
-</style>
