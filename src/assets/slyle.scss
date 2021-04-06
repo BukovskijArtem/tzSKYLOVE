@@ -47,6 +47,7 @@ $color_3: #78cd51;
     border-radius: 5px;
     background-color: $color_2;
     display: flex;
+    display: -moz-box;
     display: -webkit-box;
     display: -ms-flexbox;
     justify-content: space-between;
