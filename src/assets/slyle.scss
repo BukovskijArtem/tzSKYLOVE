@@ -3,7 +3,8 @@ $color_2: #fff;
 $color_3: #78cd51;
 
 *{
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
 }
 * p {
     font-family: "Lucida Console", Courier, monospace;
@@ -46,19 +47,25 @@ $color_3: #78cd51;
     overflow-x: auto;
     border-radius: 5px;
     background-color: $color_2;
-    display: flex;
-    display: -moz-box;
-    display: -webkit-box;
     display: -ms-flexbox;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: nowrap;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
     margin: 15px;
     p {
         color: black
     }
 }
 .tableTicket__num {
+    -ms-flex: 35px;
+    -webkit-box-flex: 35px;
     flex: 35px;
     max-width: 35px;
     width: 100%;
@@ -70,6 +77,8 @@ $color_3: #78cd51;
     border-radius: 5px;
 }
 .tableTicket__img {
+    -ms-flex: 60px;
+    -webkit-box-flex: 60px;
     flex: 60px;
     max-width: 60px;
     width: 100%;
@@ -79,29 +88,38 @@ $color_3: #78cd51;
 .tableTicket__img img{
     width: 50px;
     height: 50px;
-    object-fit: cover;
-    object-position: center;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center;
+       object-position: center;
     top: 0;
 }
 .tableTicket__name {
+    -ms-flex: 70px;
+    -webkit-box-flex: 70px;
     flex: 70px;
     max-width: 70px;
     width: 100%;
     margin-left: 10px;
 }
 .tableTicket__subject {
+    -ms-flex: 500px;
+    -webkit-box-flex: 500px;
     flex: 500px;
     max-width: 500px;
     width: 100%;
     min-height: 80px;
     max-height: 80px;
     overflow-y: auto;
-    scroll-snap-type: y proximity;
+    -ms-scroll-snap-type: y proximity;
+        scroll-snap-type: y proximity;
     background-color: #e6e1e1;
     border-radius: 5px;
     padding: 10px 10px 10px 10px;
     margin: 10px 0px 10px 100px;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     span {
         color: #02bfd8c9;
     }
@@ -109,17 +127,23 @@ $color_3: #78cd51;
         width: 0;
     }
     @media (max-width: 767px) {
-        flex: 350px;
+        -webkit-box-flex: 350px;
+            -ms-flex: 350px;
+                flex: 350px;
         max-width: 350px;
         width: 100%;
     }
     @media (max-width: 575px) {
-        flex: 300px;
+        -webkit-box-flex: 300px;
+            -ms-flex: 300px;
+                flex: 300px;
         max-width: 300px;
         width: 100%;
     }
     @media (max-width: 375) {
-        flex: 200px;
+        -webkit-box-flex: 200px;
+            -ms-flex: 200px;
+                flex: 200px;
         max-width: 200px;
         width: 100%;
     }
@@ -131,7 +155,9 @@ $color_3: #78cd51;
 .tableTicket__priority {
     white-space: nowrap;
     margin-left: 50px;
-    flex: 100px;
+    -webkit-box-flex: 100px;
+        -ms-flex: 100px;
+            flex: 100px;
     max-width: 100px;
     width: 100%;
 }
@@ -156,7 +182,9 @@ content: ' \25CF';
     color: #bec3c7;
 }
 .tableTicket__status {
-    white-space:nowrap;
+    white-space: nowrap;
+    -ms-flex: 100px;
+    -webkit-box-flex: 100px;
     flex: 100px;
     max-width: 100px;
     width: 100%;
@@ -167,6 +195,8 @@ content: ' \25CF';
 }
 .tableTicket__date {
     white-space:nowrap;
+    -ms-flex: 150px;
+    -webkit-box-flex: 150px;
     flex: 150px;
     max-width: 150px;
     width: 100%;
@@ -196,7 +226,8 @@ content: ' \25CF';
     padding: 20px 30px;
     background-color: $color_2;
     border-radius: 2px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+    -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
     -webkit-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
@@ -241,5 +272,6 @@ content: ' \25CF';
 .modal-enter .modal-container,
 .modal-leave-active .modal-container {
     -webkit-transform: scale(1.1);
-    transform: scale(1.1);
+    -ms-transform: scale(1.1);
+        transform: scale(1.1);
 }
